@@ -58,4 +58,18 @@ class TicTacToe
     display_board
   end
 
+  def turn_count
+    counter = 0
+    @board.each do |play|
+      if play == "X" || play == "O"
+        counter += 1
+      end
+    end
+    counter
+  end
+
+  def current_player
+    turn = turn_count.even? ? "X" : "O"
+  end
+
 end
