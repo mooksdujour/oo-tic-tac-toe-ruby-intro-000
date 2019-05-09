@@ -45,7 +45,6 @@ class TicTacToe
   end
 
   def turn
-
     puts "Please enter a number between 1 and 9"
     user_input = gets.strip
     index = input_to_index(user_input)
@@ -70,6 +69,23 @@ class TicTacToe
 
   def current_player
     turn = turn_count.even? ? "X" : "O"
+  end
+
+  def won?
+     WIN_COMBINATIONS.each do |win_combination|
+       win_index_1 = win_combination[0]
+       win_index_2 = win_combination[1]
+       win_index_3 = win_combination[2]
+  
+       position_1 = @board[win_index_1] # value of board at win_index_1
+       position_2 = @board[win_index_2] # value of board at win_index_2
+       position_3 = @board[win_index_3] # value of board at win_index_3
+  
+       if position_1 == position_2 && position_2 == position_3 && position_taken?(win_index_2)
+         return win_combination
+       end
+     end
+     false
   end
 
 end
