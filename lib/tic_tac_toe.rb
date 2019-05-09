@@ -29,23 +29,23 @@ class TicTacToe
   def move
     @board[@index] = @token
   end
-  
+
   def position_taken?(position)
     if @board[position] == "X" || @board[position] == "O"
       return true
     end
     false
   end
-  
+
   def valid_move?
     if position.between?(0, 9) && !position_taken?(board, position)
       return true
     end
     false
   end
-  
+
   def turn
-  
+
     puts "Please enter a number between 1 and 9"
     user_input = gets.strip
     @index = input_to_index
@@ -54,11 +54,11 @@ class TicTacToe
     else
       turn
     end
-  
+
     display_board
   end
-  
-  
+
+
   def turn_count
     counter = 0
     @board.each do |play|
@@ -68,52 +68,52 @@ class TicTacToe
     end
     counter
   end
-  
+
   def current_player
     turn = turn_count.even? ? "X" : "O"
   end
-  
+
   def won?
      WIN_COMBINATIONS.each do |win_combination|
        win_index_1 = win_combination[0]
        win_index_2 = win_combination[1]
        win_index_3 = win_combination[2]
-  
+
        position_1 = @board[win_index_1] # value of board at win_index_1
        position_2 = @board[win_index_2] # value of board at win_index_2
        position_3 = @board[win_index_3] # value of board at win_index_3
-  
+
        if position_1 == position_2 && position_2 == position_3 && position_taken?(win_index_2)
          return win_combination
        end
      end
      false
   end
-  
+
   def full?
     @board.all? {|i| i == "X" || i == "O"}
   end
-  
+
   def draw?
     if !won? && full?
      return true
     end
     false
   end
-  
+
   def over?
     if draw? || won? || full?
      return true
     end
     false
   end
-  
+
   def winner
     if won?
       return @board[won?]
     end
   end
-  
+
   def play
     until over?
        turn
